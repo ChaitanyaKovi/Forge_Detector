@@ -57,7 +57,7 @@ dropArea.addEventListener('click', () => {
     fileElem.click();
 });
 
-fileElem.addEventListener('change', function() {
+fileElem.addEventListener('change', function () {
     handleFiles(this.files);
 });
 
@@ -75,7 +75,7 @@ function handleFiles(files) {
 function showPreview(file) {
     const reader = new FileReader();
     reader.readAsDataURL(file);
-    reader.onloadend = function() {
+    reader.onloadend = function () {
         previewImage.src = reader.result;
         dropArea.classList.add('hidden');
         previewContainer.classList.remove('hidden');
@@ -107,13 +107,13 @@ analyzeBtn.addEventListener('click', async () => {
     formData.append('file', selectedFile);
 
     try {
-        const response = await fetch('http://localhost:5000/predict', {
+        const response = await fetch('https://forge-detector.onrender.com/predict', {
             method: 'POST',
             body: formData
         });
 
         const data = await response.json();
-        
+
         if (response.ok) {
             showResult(data);
         } else {
@@ -132,14 +132,14 @@ analyzeBtn.addEventListener('click', async () => {
 
 function showResult(data) {
     resultCard.classList.remove('hidden');
-    
+
     // Reset classes
     resultCard.classList.remove('success', 'danger');
     resultIcon.classList.remove('fa-check-circle', 'fa-times-circle');
 
     const isReal = data.result === 'Real';
     const percent = parseFloat(data.confidence).toFixed(1) + '%';
-    
+
     // Sanitize confidence for width (0-100)
     const width = parseFloat(data.confidence);
 
@@ -159,6 +159,6 @@ function showResult(data) {
     setTimeout(() => {
         meterFill.style.width = percent;
     }, 100);
-    
+
     confidenceText.textContent = `${percent} Confidence`;
 }

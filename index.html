@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Signature Verification</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="background-mesh"></div>
+    
+    <div class="container">
+        <header>
+            <h1>Signature<span class="gradient-text">Guard</span> AI</h1>
+            <p>Advanced Forgery Detection System</p>
+        </header>
+
+        <main>
+            <div class="upload-card glass-panel">
+                <div class="upload-area" id="drop-area">
+                    <div class="icon-container">
+                        <i class="fas fa-file-signature"></i>
+                    </div>
+                    <h3>Upload Signature</h3>
+                    <p>Drag & drop or click to browse</p>
+                    <input type="file" id="fileElem" accept="image/*" hidden>
+                </div>
+
+                <div class="preview-container hidden" id="preview-container">
+                    <img id="preview-image" src="" alt="Signature Preview">
+                    <button class="remove-btn" id="remove-btn"><i class="fas fa-times"></i></button>
+                </div>
+
+                <button id="analyze-btn" class="cta-button" disabled>
+                    <span class="btn-text">Analyze Signature</span>
+                    <span class="loader hidden"></span>
+                </button>
+            </div>
+
+            <div class="result-card glass-panel hidden" id="result-card">
+                <div class="result-icon-container">
+                    <i class="fas fa-check-circle" id="result-icon"></i>
+                </div>
+                <h2 id="result-title">Authentic</h2>
+                <div class="confidence-meter">
+                    <div class="meter-bar">
+                        <div class="meter-fill" id="meter-fill"></div>
+                    </div>
+                    <span id="confidence-text">98% Confidence</span>
+                </div>
+                <p id="result-description">The signature analysis confirms high similarity with the authentic patterns.</p>
+            </div>
+        </main>
+
+        <footer>
+            <p>&copy; 2025 AI SignatureGuard. Powered by Deep Learning.</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

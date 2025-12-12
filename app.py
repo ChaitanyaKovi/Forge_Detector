@@ -18,8 +18,11 @@ if model is None:
     print("Model not found. Predictions will be random until trained.")
     # Create a temporary dummy model in memory
     model = build_model()
-    # Fit with one dummy sample so it's initialized
-    model.fit(np.random.rand(1, IMG_HEIGHT * IMG_WIDTH), [1])
+    # Fit with dummy samples (one for each class) so it's initialized
+    # Scikit-learn requires at least 2 classes to fit
+    dummy_X = np.random.rand(2, IMG_HEIGHT * IMG_WIDTH)
+    dummy_y = [0, 1] # 0=Forged, 1=Real
+    model.fit(dummy_X, dummy_y)
 
 @app.route('/health', methods=['GET'])
 def health():
